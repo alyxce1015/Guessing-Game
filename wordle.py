@@ -40,9 +40,11 @@ def guessing_game():
     attempts = 10
     # creates word as a blank
     word_to_guess = ['_'] * len(word)
-
+    guessedLetters = list()
     # word display
     while attempts > 0:
+        
+        print(guessedLetters)
         print("Current word: " + ' '.join(word_to_guess))
         user_guess = input("Guess a letter: ")
         print()
@@ -55,6 +57,7 @@ def guessing_game():
            
         else:
             attempts -= 1
+            guessedLetters.append(user_guess)
             print("Wrong guess try again.")
             print("Attempts remaining: " + str(attempts))
             print()
