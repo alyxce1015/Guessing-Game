@@ -23,8 +23,9 @@ def load_words(words):
         for line in f:
             # strip newline then append to list
             wordlist.append(line.rstrip())
-    print(" ", len(wordlist), "words loaded.")
-    print()
+    print(" ", len(wordlist), "words loaded.\n")
+
+    # use this line to print word list if needed 
     # print('\n'.join(wordlist))
     return wordlist 
 
@@ -70,12 +71,10 @@ def guessing_game():
                 attempts -= 1
                 guessedLetters.append(user_guess)
                 print("Wrong guess.")
-                print("Attempts remaining: " + str(attempts))
-                print()
+                print("Attempts remaining: " + str(attempts), '\n')
 
         if '_' not in word_to_guess:
-            print()
-            print("The word was:", word)
+            print("\nThe word was:", word)
             print("You guessed the word correctly nice job!")
             break
         elif attempts == 0:
