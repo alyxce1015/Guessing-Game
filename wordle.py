@@ -3,6 +3,12 @@ import random
 """
 currently working on getting hints to work
 i.e. create a list of letters that are already used to narrow down the options
+we want this to be in a way that if the letter was used already we don't remove an attempt
+* also work on not allowing the same correcet letters already in the word
+
+pseudo
+if letter in guessedList then print("letter already guessed") -> continue
+else: attempts -= 1 append to guessedList()
 """
 
 
@@ -44,7 +50,7 @@ def guessing_game():
     # word display
     while attempts > 0:
         
-        print(guessedLetters)
+        print("Letters guessed:", ", ".join(guessedLetters))
         print("Current word: " + ' '.join(word_to_guess))
         user_guess = input("Guess a letter: ")
         print()
@@ -56,14 +62,20 @@ def guessing_game():
             print("Nice Guess!")
            
         else:
-            attempts -= 1
-            guessedLetters.append(user_guess)
-            print("Wrong guess try again.")
-            print("Attempts remaining: " + str(attempts))
-            print()
+            if user_guess in guessedLetters:
+                print("You have already guessed:", user_guess)
+                print("Attempts remaining: " + str(attempts))
+                continue
+            else:
+                attempts -= 1
+                guessedLetters.append(user_guess)
+                print("Wrong guess.")
+                print("Attempts remaining: " + str(attempts))
+                print()
 
         if '_' not in word_to_guess:
             print()
+            print("The word was:", word)
             print("You guessed the word correctly nice job!")
             break
         elif attempts == 0:
