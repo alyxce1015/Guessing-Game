@@ -2,13 +2,9 @@ import random
 
 """
 currently working on getting hints to work
-i.e. create a list of letters that are already used to narrow down the options
-we want this to be in a way that if the letter was used already we don't remove an attempt
-* also work on not allowing the same correcet letters already in the word
+i.e.
+* also work on not allowing the same correct letters already in the word
 
-pseudo
-if letter in guessedList then print("letter already guessed") -> continue
-else: attempts -= 1 append to guessedList()
 """
 
 
@@ -42,7 +38,11 @@ wordlist = load_words('words.txt')
 """Function of actual game"""
 def guessing_game(): 
     word = choose_word_from_list(wordlist)
+
+    # this is to test functionality
     print("The word is", word)
+
+
     # chooses random word from bank
     attempts = 10
     # creates word as a blank
@@ -55,6 +55,11 @@ def guessing_game():
         print("Current word: " + ' '.join(word_to_guess))
         user_guess = input("Guess a letter: ")
         print()
+
+        # makes sure there is no multiple letters in guess
+        if len(user_guess) > 1:
+            print("Error: guess must be 1 letter only. Please restart")
+            break
 
         if user_guess in word:
             for i in range(len(word)):
